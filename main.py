@@ -4,7 +4,7 @@ from textual.widgets import Header, Footer, Button, Static, Label
 from textual.screen import Screen
 from textual.containers import Container, Vertical, Horizontal
 
-from programs.program1 import Screen1
+from programs import Screen1, Screen2, Screen3, Screen4
 
 #Description widgets
 class Description(Static):
@@ -44,10 +44,10 @@ class MainScreen(Screen):
         # Menu
         yield Label("[bold underline]Menu Program", id="menu-title")
         with Container(id="menus"):
-            yield Button("Program 1", classes="menu", variant="primary")
-            yield Button("Program 2", classes="menu", variant="primary")
-            yield Button("Program 3", classes="menu", variant="primary")
-            yield Button("Program 4", classes="menu", variant="primary")
+            yield Button("Program 1\nKonversi Bilangan", classes="menu", variant="primary", id="program1")
+            yield Button("Program 2\nImplementasi Stack 1", classes="menu", variant="primary", id="program2")
+            yield Button("Program 3\nImplementasi Stack 2", classes="menu", variant="primary", id="program3")
+            yield Button("Program 4\nReverse String", classes="menu", variant="primary", id="program4")
 
         # Footer
         yield Footer()
@@ -66,6 +66,15 @@ class Main(App):
         if event.button.id == "program1":
             self.install_screen(Screen1(), name="screen1")
             self.push_screen("screen1")
+        elif event.button.id == "program2":
+            self.install_screen(Screen2(), name="screen2")
+            self.push_screen("screen2")
+        elif event.button.id == "program3":
+            self.install_screen(Screen3(), name="screen3")
+            self.push_screen("screen3")
+        elif event.button.id == "program4":
+            self.install_screen(Screen4(), name="screen4")
+            self.push_screen("screen4")
 
     def action_back(self) -> None:
         self.uninstall_screen(self.pop_screen())
